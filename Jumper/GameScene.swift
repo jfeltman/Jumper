@@ -33,12 +33,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameState = GameState.introLogo
     
     override func didMove(to view: SKView) {
-        
         backgroundColor = UIColor.black
         
         createPlayer()
         createGround()
-        //startObstacles()
         createScore()
         createLogos()
         
@@ -58,11 +56,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody = SKPhysicsBody(texture: playerTexture, size: player.size)
         player.physicsBody!.contactTestBitMask = player.physicsBody!.collisionBitMask
         player.physicsBody?.isDynamic = false
-        
-        //player.physicsBody?.collisonBitMask = 0
-        
+    
         addChild(player)
-        
     }
     
     func createGround() {
@@ -82,20 +77,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         obstacle.physicsBody?.isDynamic = false
         obstacle.name = "obstacle"
         
-        /*
-        let obstacleCollison = SKSpriteNode(color: UIColor.red, size: CGSize(width: 20, height: frame.height))
-        obstacleCollison.name = "scoreDetect"
-        obstacleCollison.physicsBody = SKPhysicsBody(rectangleOf: obstacleCollison.size)
-        obstacleCollison.physicsBody?.isDynamic = false
-        */
         let xPosition = frame.width + obstacle.frame.width
-        //let endPosition = frame.width + (obstacle.frame.width * 2)
         
         addChild(obstacle)
-        //addChild(obstacleCollison)
-        
+
         obstacle.position = CGPoint(x: xPosition, y: size.height * 0.39)
-        //obstacleCollison.position = CGPoint(x: 5 + xPosition + (obstacle.size.width * 2), y: frame.midY)
         
         let randDuration = random(min: CGFloat(1), max: CGFloat(1.5))
         let actionMove = SKAction.moveTo(x: -1, duration: TimeInterval(randDuration))
@@ -150,11 +136,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameOver.position = CGPoint(x: frame.midX, y: frame.midY)
         gameOver.alpha = 0
         addChild(gameOver)
-        
-    }
-    
-    func stopObstacles() {
-        obstacle.removeAction(forKey: "startObstacles")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -197,10 +178,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             return
         }
- 
     }
     
-    
     override func update(_ currentTime: TimeInterval) {
+            // not used
     }
 }
